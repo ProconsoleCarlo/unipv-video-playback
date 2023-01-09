@@ -69,6 +69,8 @@ public class VideoPlayer implements IVideoPlayer {
 		if (player != null) {
 			player.start();
 		}else {
+			//TODO Mostrare una finestra di errore invece che stampare a video
+			// In teoria non dovremmo mai arrivare a questo punto se abbiamo lavorato bene xD
 			System.out.println("Player non caricato!");
 		}
 	}

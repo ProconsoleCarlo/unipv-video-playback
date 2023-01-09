@@ -1,6 +1,5 @@
 package mediaPlayer;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.io.File;
 import java.util.Observable;
@@ -42,10 +41,6 @@ public class VideoManager extends Observable{
 	 */
 	public void play() {
 		videoPanel.buildComponents();
-	//	final int width = videoPanel.getWidth();
-	//	final int height = videoPanel.getHeight()+30;
-	//	mainFrame.setSize(width, height);
-	//	System.err.println("w "+width +"\nh "+ height);
 		videoPlayer.play();
 		mainFrame.pack();
 		update();

@@ -1,4 +1,4 @@
-package ui;
+package playlistWriter;
 
 import java.awt.Dimension;
 import java.awt.FileDialog;
@@ -20,13 +20,15 @@ import utils.OnlyNumberDocument;
 import utils.VideosMap;
 /**
  * Il frame per creare la playlist di file video 
+ * NOTA BENE: e' semplicemente un frame di prova per visualizzare un possibile futuro frame di creazione della playlist,
+ * quindi NON fa niente!!
  * @author Carlo
  *
  */
-public class CreatePlaylistFrame {
+public class PlaylistCreationFrame {
 
 	private int positionElement = 1;
-	public CreatePlaylistFrame() {
+	public PlaylistCreationFrame() {
 		super();
 	}
 
@@ -95,7 +97,7 @@ public class CreatePlaylistFrame {
 		createMenuBar(frame);
 		frame.pack();
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	private void createElement(GridBagLayout layout, GridBagConstraints lim, final JFrame frame) {

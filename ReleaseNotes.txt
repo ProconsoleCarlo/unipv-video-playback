@@ -1,0 +1,34 @@
+v0.5 03/05/2014
+Classi aggiunte:
+-Estratta la classe che crea la JMenuBar
+	-MediaPlayerMenuBar
+-Implementata la funzione di lettura da file dei dati della playlist
+	-IPlaylistFileInterprer: l'interfaccia dell'interprete di file di playlist
+	-PlaylistFileTxtInterpreter: l'interprete delle playlist in file txt
+	-PlayListElement: ciascun elemento della playlist con le sue proprietà
+	-PlaylistManager: la classe che gestisce il contenuto della playlist
+-Creato un esempio indicativo del frame per creare le playlist
+	-PlaylistCreationFrame
+-Aggiunte classi di utilità
+	-FileLoaderWriter: una classe che gestisce l'input e l'output su file
+	-OnlyNumberDocument: un document per impedire l'inserimento di caratteri diversi da numeri in una JTextField
+	-VideosMap: una mappa dei video che crea una corrispondenza tra un id e il percorso dei file video
+-Creati due test
+	-TestPlaylistManager: testa la lettura da file e la creazione dell'arraylist<PlaylistElement>
+	-Test02: un test di funzionalità complessiva con aggiunte le nuove funzioni
+
+v0.3 28/04/2014
+Classi aggiunte:
+-IVideoPlayer: l'intefaccia per un player basato su una qualunque libreria
+Refactoring:
+-VideoPanel
+-Test01
+
+v0.2 27/04/2014
+Classi aggiunte:
+-VideoManager: la classe che gestisce il mediaPlayer
+-VideoPlayer: il videoPlayer della JMF
+-VideoPanel: il pannello su cui visualizzare il video
+
+v0.1 24/04/2014
+Create due classi di esempi di funzionamento della JMF
