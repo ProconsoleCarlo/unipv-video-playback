@@ -1,4 +1,4 @@
-package esempi;
+package tests;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -19,11 +19,16 @@ import javax.swing.JFrame;
 
 public class VideoPlayerTest01 extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Player player;
     Component center;
     Component south;
   
-    public VideoPlayerTest01() {
+    @SuppressWarnings("deprecation")
+	public VideoPlayerTest01() {
       setDefaultCloseOperation(EXIT_ON_CLOSE);
       JButton button = new JButton("Select File");
       ActionListener listener = 
@@ -98,7 +103,7 @@ public class VideoPlayerTest01 extends JFrame{
     }
   
     public static void main(String args[]) {
-    	VideoPlayerTest01 pv = new VideoPlayerTest01();
+    	new VideoPlayerTest01();
     }
 
 }
