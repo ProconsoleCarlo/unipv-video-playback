@@ -1,36 +1,53 @@
 package mediaPlayer;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.io.File;
 import java.util.Observable;
 
 import javax.swing.JFrame;
 
 import ui.VideoPanel;
-
+/**
+ * Classe che gestisce tutto il media player
+ *
+ */
 public class VideoManager extends Observable{
 
-	private VideoPlayer videoPlayer = new VideoPlayer();
+	private IVideoPlayer videoPlayer;
 	private ui.VideoPanel videoPanel = new VideoPanel();
 	private JFrame mainFrame;
-	
-	public VideoManager( JFrame mainFrame) {
+	private Component[] components;
+	/**
+	 * @param mainFrame Il frame su cui realizzare il player
+	 */
+	public VideoManager( JFrame mainFrame, IVideoPlayer videoPlayer) {
 		super();
 		this.mainFrame = mainFrame;
+		this.videoPlayer = videoPlayer;
 		mainFrame.getContentPane().add(videoPanel);
-		addObserver(videoPanel);
+		this.addObserver(videoPanel);
 	}
-
+	/**
+	 * Apre il file video e inizializza il player
+	 * @param fileVideo
+	 */
 	public void openVideo(File fileVideo) {
 		videoPlayer.setFileVideo(fileVideo);
-		videoPlayer.createPlayer(videoPanel);
+		components = videoPlayer.createPlayer();
+		videoPanel.setComponents(components);
 	}
-	/*
-	 *	Setta la risoluzione del mainFrame a quella del player così il video non viene distorto nelle due dimensioni 
+	/**
+	 * Avvia la riproduzione del video player, settando la giusta dimensione del frame
 	 */
 	public void play() {
-//		System.out.println("Dimensione player: "+videoPanel.getWidth()+"x"+videoPanel.getHeight());
-		mainFrame.setSize(videoPanel.getWidth(), videoPanel.getHeight()+30);
+		videoPanel.buildComponents();
+	//	final int width = videoPanel.getWidth();
+	//	final int height = videoPanel.getHeight()+30;
+	//	mainFrame.setSize(width, height);
+	//	System.err.println("w "+width +"\nh "+ height);
 		videoPlayer.play();
+		mainFrame.pack();
 		update();
 	}
 	
