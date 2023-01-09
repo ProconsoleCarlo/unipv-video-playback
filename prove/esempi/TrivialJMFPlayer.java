@@ -1,4 +1,4 @@
-package prove;
+package esempi;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
