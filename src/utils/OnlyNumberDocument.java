@@ -5,8 +5,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 /**
  * Un plain document che controlla se gli inserimenti in un area di testo sono interi
- * e si occupa di effettuarne gli inserimenti tramite il metodo insertString
- * @author Carlo
+ * e si occupa di effettuarne gli inserimenti tramite il metodo insertString.
+ * 
  */
 public class OnlyNumberDocument extends PlainDocument{
 

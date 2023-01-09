@@ -2,15 +2,14 @@ package mediaPlayer;
 
 import java.awt.Component;
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 
-import javax.media.CannotRealizeException;
 import javax.media.Manager;
-import javax.media.NoPlayerException;
 import javax.media.Player;
+import javax.media.Time;
+import javax.swing.JOptionPane;
+
 /**
- * Un video player basato su JMF
+ * Componente che riproduce il video.
  *
  */
 public class VideoPlayer implements IVideoPlayer {
@@ -18,60 +17,76 @@ public class VideoPlayer implements IVideoPlayer {
 	public VideoPlayer() {
 		super();
 	}
-	private File fileVideo;
-	private Player player;
-	/* (non-Javadoc)
-	 * @see mediaPlayer.IVideoPlayer#setFileVideo(java.io.File)
-	 */
+
+	private Player initializedPlayer;
+
 	@Override
-	public void setFileVideo(File fileVideo) {
-		this.fileVideo = fileVideo;
-	}
-	/* (non-Javadoc)
-	 * @see mediaPlayer.IVideoPlayer#createPlayer()
-	 */
-	@Override
-	public Component[] createPlayer() {
-		/*
-		 * Se il player è già in esecuzione viene fermato, deallocato e rimosso dal pannello
-		 */
-		
-		if (player != null) {
-			player.stop();
-			player.deallocate();
-		}
-		Component[] components = new Component[2];
+	public boolean initializePlayer(File fileVideo) {
 		try {
-			player = Manager.createRealizedPlayer(fileVideo.toURI().toURL());
-			components[0] = player.getVisualComponent();
-			components[1] = player.getControlPanelComponent();
-		} catch (NoPlayerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CannotRealizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			initializedPlayer = Manager.createRealizedPlayer(fileVideo.toURI().toURL());
+			return true;
+		} catch (Exception e) {
+			initializedPlayer = null;
+			return false;
 		}
-		
+	}
+
+	/**
+	 * Crea il componente visuale del player.
+	 * @return i componenti del player:
+	 * 				components[0] = VisualComponent.
+	 */
+	@Override
+	public Component[] createPlayerComponents() {
+		Component[] components = new Component[1];
+		components[0] = initializedPlayer.getVisualComponent();
 		return components;
 	}
-	/* (non-Javadoc)
-	 * @see mediaPlayer.IVideoPlayer#play()
-	 */
+
+	@Override
+	public void setDuration(int secin, int secout) {
+		initializedPlayer.stop();
+		initializedPlayer.setMediaTime(new Time((double)secin));
+		initializedPlayer.setStopTime(new Time((double)secout));
+	}
+	
+	@Override
+	public double getDurationInSeconds() {
+		if (initializedPlayer != null) {
+			return initializedPlayer.getDuration().getSeconds();
+		}
+		return 0;
+	}
+
+	@Override
+	public double getCurrentTime() {
+		return initializedPlayer.getMediaTime().getSeconds();
+	}
+	
 	@Override
 	public void play() {
-		if (player != null) {
-			player.start();
-		}else {
-			//TODO Mostrare una finestra di errore invece che stampare a video
-			// In teoria non dovremmo mai arrivare a questo punto se abbiamo lavorato bene xD
-			System.out.println("Player non caricato!");
+		if (initializedPlayer != null) {
+			initializedPlayer.start();
+		} else {
+			JOptionPane.showMessageDialog(null, "ERRORE! Player non caricato!","Errore", JOptionPane.ERROR_MESSAGE);
+			initializedPlayer.stop();
 		}
+	}
+	
+	@Override
+	public void pause() {
+		if (initializedPlayer != null) {
+			initializedPlayer.stop();
+		}
+	}
+	
+	@Override
+	public void stop() {
+		if (initializedPlayer != null) {
+			initializedPlayer.stop();
+			initializedPlayer.deallocate();
+			initializedPlayer.close();
+			initializedPlayer = null;
+		}	
 	}
 }

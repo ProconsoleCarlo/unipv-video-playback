@@ -1,0 +1,16 @@
+-1728236938 .\VideoTest\Men in black DivX3 MiniSize.avi
+1959596080 .\Playlist\PlaylistAPlaylistVuota.pls
+1418175743 .\Playlist\Tempi2oVideoImpossibili.pls
+-236789728 .\VideoTest\I pirati della Silicon Valley DivX5 MiniSize.avi
+-128013751 .\Playlist\PlaylistVuota.pls
+2146492061 .\Playlist\Playlist1.pls
+1266707641 .\Playlist\TestLoop1.pls
+1194832234 .\Playlist\ProvaN.pls
+2146234271 .\Playlist\Playlist3.pls
+237601851 .\VideoTest\Thor MiniSize.avi
+221187231 .\Playlist\PlaylistAPlaylist.pls
+636906982 .\VideoTest\Il cacciatore di ex Xvid MiniSize.avi
+-2035655667 .\Playlist\MultiplaNificazione.pls
+-2145483746 .\Playlist\Playlist4.pls
+1269957944 .\Playlist\TestLoop2.pls
+2145580828 .\Playlist\Playlist2.pls
